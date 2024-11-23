@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/MoCoGAN-Frontend/static/css/main.67eecac3.css",
-    "main.js": "/MoCoGAN-Frontend/static/js/main.d87d2cc2.js",
+    "main.css": "/MoCoGAN-Frontend/static/css/main.d3f4b45f.css",
+    "main.js": "/MoCoGAN-Frontend/static/js/main.f48602a7.js",
     "static/js/453.6dd4b8d7.chunk.js": "/MoCoGAN-Frontend/static/js/453.6dd4b8d7.chunk.js",
     "index.html": "/MoCoGAN-Frontend/index.html",
-    "main.67eecac3.css.map": "/MoCoGAN-Frontend/static/css/main.67eecac3.css.map",
-    "main.d87d2cc2.js.map": "/MoCoGAN-Frontend/static/js/main.d87d2cc2.js.map",
+    "main.d3f4b45f.css.map": "/MoCoGAN-Frontend/static/css/main.d3f4b45f.css.map",
+    "main.f48602a7.js.map": "/MoCoGAN-Frontend/static/js/main.f48602a7.js.map",
     "453.6dd4b8d7.chunk.js.map": "/MoCoGAN-Frontend/static/js/453.6dd4b8d7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.67eecac3.css",
-    "static/js/main.d87d2cc2.js"
+    "static/css/main.d3f4b45f.css",
+    "static/js/main.f48602a7.js"
   ]
 }
