@@ -1,6 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const MediaDisplay = ({ filename }) => {
+  // Function to check if file is a GIF
+  const isGif = filename.toLowerCase().endsWith('.gif');
+  const fileUrl = `http://127.0.0.1:5000/api/download/${filename}`;
+
+  return isGif ? (
+    // Render image tag for GIFs
+    <div className="bg-gray-200 rounded-md overflow-hidden shadow-md">
+      <img 
+        src={fileUrl} 
+        alt={`Generated ${filename}`} 
+        className="w-full h-auto"
+      />
+      <p className="text-center text-sm py-2">{filename}</p>
+    </div>
+  ) : (
+    // Render video tag for other formats (MP4)
+    <div className="bg-gray-200 rounded-md overflow-hidden shadow-md">
+      <video controls className="w-full h-auto">
+        <source src={fileUrl} type={`video/${filename.split('.').pop()}`} />
+        Your browser does not support the video tag.
+      </video>
+      <p className="text-center text-sm py-2">{filename}</p>
+    </div>
+  );
+};
+
 const App = () => {
   const [numVideos, setNumVideos] = useState(10);
   const [outputFormat, setOutputFormat] = useState("gif");
@@ -8,25 +35,28 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [generatedVideos, setGeneratedVideos] = useState([]);
   const [outputDir, setOutputDir] = useState("");
-  const [subdir, setSubdir] = useState(""); // New state for the subdirectory
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setGeneratedVideos([]); // Clear previous videos
 
     try {
-      const response = await axios.post("https://mocogan-app-715545685222.us-central1.run.app/api/generate", {
+      const response = await axios.post("http://127.0.0.1:5000/api/generate", {
         num_videos: numVideos,
         output_format: outputFormat,
         number_of_frames: numFrames,
       });
 
-      setGeneratedVideos(response.data.files);
-      setOutputDir(response.data.output_directory);
-      setSubdir(response.data.subdir); // Capture the subdirectory
+      if (response.data.status === 'success') {
+        setGeneratedVideos(response.data.files);
+        setOutputDir(response.data.output_directory);
+      } else {
+        throw new Error(response.data.message || 'Failed to generate videos');
+      }
     } catch (error) {
       console.error("Error generating videos:", error);
-      alert("Failed to generate videos. Please try again.");
+      alert(error.message || "Failed to generate videos. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -108,16 +138,7 @@ const App = () => {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
               {generatedVideos.map((video, index) => (
-                <div key={index} className="bg-gray-200 rounded-md overflow-hidden shadow-md">
-                  <video
-                    controls
-                    className="w-full"
-                    src={`https://mocogan-app-715545685222.us-central1.run.app/api/download/${subdir}/${video}`} // Include subdir in the URL
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                  <p className="text-center text-sm py-2">{video}</p>
-                </div>
+                <MediaDisplay key={index} filename={video} />
               ))}
             </div>
           </div>
