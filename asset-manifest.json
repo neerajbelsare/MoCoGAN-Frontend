@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/MoCoGAN-Frontend/static/css/main.67eecac3.css",
+    "main.js": "/MoCoGAN-Frontend/static/js/main.0a287948.js",
+    "static/js/453.6dd4b8d7.chunk.js": "/MoCoGAN-Frontend/static/js/453.6dd4b8d7.chunk.js",
+    "index.html": "/MoCoGAN-Frontend/index.html",
+    "main.67eecac3.css.map": "/MoCoGAN-Frontend/static/css/main.67eecac3.css.map",
+    "main.0a287948.js.map": "/MoCoGAN-Frontend/static/js/main.0a287948.js.map",
+    "453.6dd4b8d7.chunk.js.map": "/MoCoGAN-Frontend/static/js/453.6dd4b8d7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67eecac3.css",
+    "static/js/main.0a287948.js"
+  ]
+}
