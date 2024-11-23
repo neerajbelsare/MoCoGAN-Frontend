@@ -8,6 +8,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [generatedVideos, setGeneratedVideos] = useState([]);
   const [outputDir, setOutputDir] = useState("");
+  const [subdir, setSubdir] = useState(""); // New state for the subdirectory
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const App = () => {
 
       setGeneratedVideos(response.data.files);
       setOutputDir(response.data.output_directory);
+      setSubdir(response.data.subdir); // Capture the subdirectory
     } catch (error) {
       console.error("Error generating videos:", error);
       alert("Failed to generate videos. Please try again.");
@@ -110,7 +112,7 @@ const App = () => {
                   <video
                     controls
                     className="w-full"
-                    src={`https://mocogan-app-715545685222.us-central1.run.app/api/download/${video}`}
+                    src={`https://mocogan-app-715545685222.us-central1.run.app/api/download/${subdir}/${video}`} // Include subdir in the URL
                   >
                     Your browser does not support the video tag.
                   </video>
