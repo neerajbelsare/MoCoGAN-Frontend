@@ -4,7 +4,7 @@ import axios from "axios";
 const MediaDisplay = ({ filename }) => {
   // Function to check if file is a GIF
   const isGif = filename.toLowerCase().endsWith('.gif');
-  const fileUrl = `http://127.0.0.1:5000/api/download/${filename}`;
+  const fileUrl = `https://mocogan-app-715545685222.us-central1.run.app/api/download/${filename}`;
 
   return isGif ? (
     // Render image tag for GIFs
@@ -42,7 +42,7 @@ const App = () => {
     setGeneratedVideos([]); // Clear previous videos
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/api/generate", {
+      const response = await axios.post("https://mocogan-app-715545685222.us-central1.run.app/api/generate", {
         num_videos: numVideos,
         output_format: outputFormat,
         number_of_frames: numFrames,
